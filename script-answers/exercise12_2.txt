@@ -1,0 +1,14 @@
+Script started on 2024-02-06 10:17:54+02:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="211" LINES="57"]
+[?2004h]0;alexander@Orgrimmar: ~/Documents/Courses/Full-Stack-Open/part12-containers-applications/script-answers[01;32malexander@Orgrimmar[00m:[01;34m~/Documents/Courses/Full-Stack-Open/part12-containers-applications/script-answers[00m$ [7mdocker run -it ubuntu bash[27mdocker run -it ubuntu bash
+[?2004l[?2004h]0;root@c9d69f8cbf9b: /root@c9d69f8cbf9b:/# [7mmkdir -p /usr/src/app[27m
+[Aroot@c9d69f8cbf9b:/# mkdir -p /usr/src/app
+[A
+[?2004l[?2004h]0;root@c9d69f8cbf9b: /root@c9d69f8cbf9b:/# [K[7mecho "console.log('Hello, world!');" > /usr/src/app/index.js[27m
+[Aroot@c9d69f8cbf9b:/# echo "console.log('Hello, world!');" > /usr/src/app/index.js
+[Aroot@c9d69f8cbf9b:/# echo "console.log('Hello, world!');" > /usr/src/app/index.js[1P
+[?2004l[?2004h]0;root@c9d69f8cbf9b: /root@c9d69f8cbf9b:/# [Kexit
+[?2004lexit
+[?2004h]0;alexander@Orgrimmar: ~/Documents/Courses/Full-Stack-Open/part12-containers-applications/script-answers[01;32malexander@Orgrimmar[00m:[01;34m~/Documents/Courses/Full-Stack-Open/part12-containers-applications/script-answers[00m$ exit
+[?2004lexit
+
+Script done on 2024-02-06 10:18:41+02:00 [COMMAND_EXIT_CODE="0"]
