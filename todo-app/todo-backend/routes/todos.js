@@ -4,6 +4,7 @@ const router = express.Router();
 
 /* GET todos listing. */
 router.get('/', async (_, res) => {
+  console.log('at get todos')
   const todos = await Todo.find({})
   res.send(todos);
 });
@@ -35,13 +36,40 @@ singleRouter.delete('/', async (req, res) => {
 
 /* GET todo. */
 singleRouter.get('/', async (req, res) => {
-  res.sendStatus(405); // Implement this
+  try {
+    // Access the todo directly from req.todo
+    const todo = req.todo;
+    if (!todo) {
+      return res.status(404).json({ error: 'Todo not found' });
+    }
+    res.json(todo);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
 });
 
 /* PUT todo. */
 singleRouter.put('/', async (req, res) => {
-  res.sendStatus(405); // Implement this
+  try {
+    // Retrieve the todo item from req.todo
+    const todo = req.todo;
+    console.log('here')
+    // Update the todo item with the new data from req.body
+    todo.text = req.body.text;
+    todo.done = req.body.done;
+
+    // Save the updated todo item to the database
+    await todo.save();
+
+    // Respond with the updated todo item
+    res.json(todo);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
 });
+
 
 router.use('/:id', findByIdMiddleware, singleRouter)
 
