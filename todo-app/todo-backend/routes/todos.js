@@ -4,17 +4,25 @@ const router = express.Router();
 
 /* GET todos listing. */
 router.get('/', async (_, res) => {
-  console.log('at get todos')
   const todos = await Todo.find({})
   res.send(todos);
 });
+
 
 /* POST todo to listing. */
 router.post('/', async (req, res) => {
   const todo = await Todo.create({
     text: req.body.text,
     done: false
-  })
+  });
+
+  // Increment todo counter in Redis
+  try {
+    await setAsync('todo_counter', await getAsync('todo_counter') + 1);
+  } catch (error) {
+    console.error('Error incrementing todo counter:', error);
+  }
+
   res.send(todo);
 });
 
