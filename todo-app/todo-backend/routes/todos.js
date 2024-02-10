@@ -1,6 +1,30 @@
 const express = require('express');
 const { Todo } = require('../mongo')
 const router = express.Router();
+const redis = require('../redis');
+
+const { getAsync, setAsync } = redis;
+
+
+async function incrementTodoCounter() {
+
+  let currentCounter = await getAsync('todo_counter');
+
+  if (currentCounter === null) {
+    currentCounter = 0;
+  } else {
+
+    currentCounter = parseInt(currentCounter);
+  }
+
+  currentCounter++;
+
+
+  await setAsync('todo_counter', currentCounter);
+
+  return currentCounter;
+}
+
 
 /* GET todos listing. */
 router.get('/', async (_, res) => {
@@ -13,12 +37,12 @@ router.get('/', async (_, res) => {
 router.post('/', async (req, res) => {
   const todo = await Todo.create({
     text: req.body.text,
-    done: false
+    done: req.body.done
   });
 
   // Increment todo counter in Redis
   try {
-    await setAsync('todo_counter', await getAsync('todo_counter') + 1);
+    await incrementTodoCounter();
   } catch (error) {
     console.error('Error incrementing todo counter:', error);
   }

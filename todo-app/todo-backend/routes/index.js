@@ -8,16 +8,6 @@ const { getAsync, setAsync } = redis;
 let visits = 0;
 let addedTodos = 0;
 
-// Middleware to increment the todo counter
-router.use((req, res, next) => {
-  if (req.method === 'POST' && req.path === '/') {
-    // Increment the todo counter when a todo is added
-    addedTodos++;
-    // Increment the counter in Redis
-    setAsync('todo_counter', addedTodos);
-  }
-  next();
-});
 
 /* GET index data. */
 router.get('/', async (req, res) => {
