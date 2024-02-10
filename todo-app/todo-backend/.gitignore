@@ -62,3 +62,5 @@ typings/
 
 ./mongo_data:/data/db
 mongo_data/*
+redis_data/*
+
