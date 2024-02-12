@@ -28,6 +28,7 @@ async function incrementTodoCounter() {
 
 /* GET todos listing. */
 router.get('/', async (_, res) => {
+  console.log('At getting Todos: /todos')
   const todos = await Todo.find({})
   res.send(todos);
 });

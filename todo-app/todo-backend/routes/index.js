@@ -21,6 +21,7 @@ router.get('/', async (req, res) => {
 /* GET statistics */
 router.get('/statistics', async (req, res) => {
   // Get the todo counter from Redis
+  console.log('at /statistics')
   const todoCounter = await getAsync('todo_counter');
   res.json({
     added_todos: parseInt(todoCounter) || 0
