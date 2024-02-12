@@ -15,3 +15,5 @@ services:
     environment:
       - NODE_ENV=development
     container_name: hello-front-dev
+  debug-helper:
+    image: busybox
