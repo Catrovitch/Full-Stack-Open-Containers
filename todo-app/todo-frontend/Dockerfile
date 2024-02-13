@@ -23,13 +23,9 @@ COPY . .
 RUN npm ci
 
 # Set environment variable for backend URL
-ENV REACT_APP_BACKEND_URL=http://localhost:3000
+ENV REACT_APP_BACKEND_URL=http://localhost:8080/api
 
 # Build the React app
 RUN npm run build
 
-# Stage 3: Production-ready image
-FROM nginx:1.20-alpine
-COPY --from=build-stage /usr/src/app/build /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["npm", "start"]
