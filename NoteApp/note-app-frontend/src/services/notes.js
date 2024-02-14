@@ -21,7 +21,6 @@ const create = async (newObject) => {
 };
 
 const deleteNote = async (id) => {
-  console.log('id: ', id)
   try {
     await axios.delete(`${baseUrl}${id}`);
   } catch (error) {

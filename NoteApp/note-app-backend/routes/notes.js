@@ -16,6 +16,7 @@ router.get('/', async (req, res) => {
 
 // Create a new note
 router.post('/', async (req, res) => {
+  console.log('adding note...')
   const { text } = req.body;
   try {
     const note = new Note({ text });
@@ -29,7 +30,7 @@ router.post('/', async (req, res) => {
 
 // Delete a note by ID
 router.delete('/:id', async (req, res) => {
-  console.log('deleting notes')
+  console.log('deleting notes...')
   const { id } = req.params;
   try {
     await Note.findByIdAndDelete(id);
