@@ -3,7 +3,8 @@ const router = express.Router();
 const Note = require('../mongo/models/Note');
 
 // Get all notes
-router.get('/notes', async (req, res) => {
+router.get('/', async (req, res) => {
+  console.log('getting notes...')
   try {
     const notes = await Note.find();
     res.json(notes);
@@ -14,7 +15,7 @@ router.get('/notes', async (req, res) => {
 });
 
 // Create a new note
-router.post('/notes', async (req, res) => {
+router.post('/', async (req, res) => {
   const { text } = req.body;
   try {
     const note = new Note({ text });
@@ -27,7 +28,8 @@ router.post('/notes', async (req, res) => {
 });
 
 // Delete a note by ID
-router.delete('/notes/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
+  console.log('deleting notes')
   const { id } = req.params;
   try {
     await Note.findByIdAndDelete(id);

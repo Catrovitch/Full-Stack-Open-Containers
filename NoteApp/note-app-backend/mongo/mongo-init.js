@@ -9,7 +9,7 @@ db.createUser({
     ],
   });
   
-  db.createCollection('notes');
+db.createCollection('notes');
   
-  db.todos.insert({ text: 'I want to find the ring'});
-  db.todos.insert({ text: 'I must find the ring'});
+db.notes.insert({ text: 'I want to find the ring'});
+db.notes.insert({ text: 'I must find the ring'});
